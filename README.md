@@ -128,9 +128,10 @@ Giving the system random 3-sat istances to solve; the solution is found typicall
 it takes about 13-17 seconds on my computer that has an nvidia rtx geforce 3060 12GB gpu (better gpus can handle bigger instances and faster). I think there is still a lot **room for improvement** even for this implementation, and there can be a much better more efficient algorithm, based on the ideas of https://arxiv.org/abs/2011.06551.
 
 ##**Epilogue and Apologies**
-adaptivity' greatly improved the algorithm, same as momentum term, the <img src="https://latex.codecogs.com/gif.latex?\sin^3\left(C_m-\gamma\right)"/>  vs just <img src="https://latex.codecogs.com/gif.latex?C_m-\gamma"/> helped consistently solve in the fewest timesteps (ie. reduce deviations in solving time)
+
+Concepts of 'adaptivity' greatly improved the algorithm, same as simple momentum term (I also tried nesterov momentum and adam like optimizations, but I think that didn't help), the <img src="https://latex.codecogs.com/gif.latex?\sin^3\left(C_m-\gamma\right)"/>  vs just <img src="https://latex.codecogs.com/gif.latex?C_m-\gamma"/> helped consistently solve in the fewest timesteps (ie. reduce deviations in solving time)
 
 As of right now there are some issues with the code: 
-<img src="https://latex.codecogs.com/gif.latex?C_max\quad\text{and}\quad{C_avg}"/> computation seems broken yet it still somehow works.
+<img src="https://latex.codecogs.com/gif.latex?C_{max}\quad\text{and}\quad{C_{avg}}"/> computation seems broken yet it still somehow works.
 The GPU isn't fully used and there are many other **ineffiencies** (algorithmic and programming wise ie. data transfers, unnecessary computation, precision etc.). Also better memory management is necessary;  as with together 40 million variables and 4.25*40 million clauses gpu gets overwhelmed and computers crashes (Note: an  H100 gpu can handle succesfully 350 million variables and 1,49 billion clauses (tried on a server) ).
  
