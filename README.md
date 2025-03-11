@@ -1,4 +1,4 @@
-This code more efficiently solves 3-SAT by blending continuous dynamics with GPU-accelerated computation.
+This code more efficiently solves 3-SAT by simulating continuous dynamics with GPU-accelerated computation.
 
 obtained by tweeking, a bit, the system presented in https://arxiv.org/abs/2011.06551 of MemComputing Inc.
 
