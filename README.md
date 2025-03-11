@@ -39,7 +39,7 @@ For each clause <img src="https://latex.codecogs.com/gif.latex?m"/> and literal 
 
 The clause satisfaction measure is:
 <img src="https://latex.codecogs.com/gif.latex?C_m=\frac{1}{2}\min_{i=0,1,2}t_{m,i}"/>
-where <img src="https://latex.codecogs.com/gif.latex?min_{i=0,1,2}t_{m,i}"/> is the smallest dissatisfaction term among the three literals of the clause. Here, <img src="https://latex.codecogs.com/gif.latex?C_m\=0"/> means the clause is satisfied, and the range is <img src="https://latex.codecogs.com/gif.latex?C_m\in[0,1]"/>.
+where <img src="https://latex.codecogs.com/gif.latex?min_{i=0,1,2}t_{m,i}"/> is the smallest dissatisfaction term among the three literals of the clause. Here, <img src="https://latex.codecogs.com/gif.latex?C_m=0"/> means the clause is satisfied, and the range is <img src="https://latex.codecogs.com/gif.latex?C_m\in[0,1]"/>.
 
 Additionally, we track:
 - <img src="https://latex.codecogs.com/gif.latex?i_m^*=\arg\min_{i=0,1,2}t_{m,i}"/>, the index of the least satisfied literal.
