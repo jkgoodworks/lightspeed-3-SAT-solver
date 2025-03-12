@@ -124,7 +124,7 @@ Fig.1 here the variables <img src="https://latex.codecogs.com/gif.latex?v"/> tha
 Fig.2 <img src="https://latex.codecogs.com/gif.latex?C_m"/> of the clauses it appears in
 ![Fig2](https://github.com/user-attachments/assets/ef6ecfc6-ebc7-4bf8-97a3-4a23a6730b6f)
 
-Giving the system random 3-sat istances to solve; the solution is found typically in approximaly 87 timesteps to  solve (after running it manually many times didn't find an exception).
+Giving the system random 3-sat instances to solve; the solution is found typically in approximaly 87 timesteps to  solve (after running it manually many times didn't find an exception).
 it takes about 13-17 seconds on my computer that has an nvidia rtx geforce 3060 12GB gpu (better gpus can handle bigger instances and faster). I think there is still a lot **room for improvement** even for this implementation, and there can be a much better more efficient algorithm, based on the ideas of https://arxiv.org/abs/2011.06551.
 
 ##**Epilogue and Apologies**
@@ -133,5 +133,5 @@ Concepts of 'adaptivity' greatly improved the algorithm, same as simple momentum
 
 As of right now there are some issues with the code: 
 <img src="https://latex.codecogs.com/gif.latex?C_{max}\quad\text{and}\quad{C_{avg}}"/> computation seems broken yet it still somehow works.
-The GPU isn't fully used and there are many other **ineffiencies** (algorithmic and programming wise ie. data transfers, unnecessary computation, precision etc.). Also better memory management is necessary;  as with together 40 million variables and 4.25*40 million clauses gpu gets overwhelmed and computers crashes (Note: an  H100 gpu can handle succesfully 350 million variables and 1,49 billion clauses (tried on a server) ).
+The GPU isn't fully used and there are many other **ineffiencies** (algorithmic and programming wise ie. data transfers, unnecessary computation, precision etc.). Also better memory management is necessary;  as with together 40 million variables and 4.25*40 million clauses gpu gets overwhelmed and computers crashes (Note: an  H100 gpu (with plenty of RAM) can handle succesfully 350 million variables and 1,49 billion clauses (tried on a server) ).
  
