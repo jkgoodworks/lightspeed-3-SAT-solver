@@ -1,4 +1,4 @@
-This code more efficiently solves 3-SAT by simulating continuous dynamics with GPU-accelerated computation.
+<img src="https://latex.codecogs.com/gif.latex?O({n\over{\text{gpu\thinspace{size}}}}\log{n})"/> 3-SAT solver.
 
 obtained by tweeking, a bit, the system presented in https://arxiv.org/abs/2011.06551 of MemComputing Inc.
 
@@ -132,6 +132,16 @@ it takes about 13-17 seconds on my computer that has an nvidia rtx geforce 3060 
 Concepts of 'adaptivity' greatly improved the algorithm, same as simple momentum term (I also tried nesterov momentum and adam like optimizations, but I think that didn't help), the <img src="https://latex.codecogs.com/gif.latex?\sin^3\left(C_m-\gamma\right)"/>  vs just <img src="https://latex.codecogs.com/gif.latex?C_m-\gamma"/> helped consistently solve in the fewest timesteps (ie. reduce deviations in solving time)
 
 As of right now there are some issues with the code: 
-<img src="https://latex.codecogs.com/gif.latex?C_{max}\quad\text{and}\quad{C_{avg}}"/> computation seems broken yet it still somehow works.
-The GPU isn't fully used and there are many other **ineffiencies** (algorithmic and programming wise ie. data transfers, unnecessary computation, precision etc.). Also better memory management is necessary;  as with together 40 million variables and 4.25*40 million clauses gpu gets overwhelmed and computers crashes (Note: an  H100 gpu (with plenty of RAM) can handle succesfully 350 million variables and 1,49 billion clauses (tried on a server) ).
- 
+<img src="https://latex.codecogs.com/gif.latex?C_{max}\quad\text{and}\quad{C_{avg}}"/> computation seems broken yet it still somehow works (FIXED).
+The GPU isn't fully used and there are many other **ineffiencies** (algorithmic and programming wise ie. data transfers, unnecessary computation, precision etc.). Also better memory management is necessary;  as with together 40 million variables and 4.25*40 million clauses gpu gets overwhelmed and computers crashes (Note: an  H100 gpu (with plenty of RAM) can handle succesfully 350 million variables and 1,49 billion clauses (tried on a server) ). Also although the code is very effiecient up to even further than the critical ratio, for ratios more close to 5 it start getting inefficient (but that must be  algorithmically fixable).
+
+The timesteps <img src="https://latex.codecogs.com/gif.latex?\Delta{t}"/>.
+ seems to scale logarithmically with the number of variables <img src="https://latex.codecogs.com/gif.latex?N"/> . The actual time per <img src="https://latex.codecogs.com/gif.latex?\Delta{t}"/> is is linear (but fully parallelizable ie. doubling the gpu halves the time) function of <img src="https://latex.codecogs.com/gif.latex?N"/>. 
+![image](https://github.com/user-attachments/assets/f4fc0fac-0256-46ba-93c1-5ba2da5c027a)
+
+![steps_heatmap](https://github.com/user-attachments/assets/b59649ae-f766-4a1a-9e55-9e5d112591df)
+
+also the average clause dissatisfaction <img src="https://latex.codecogs.com/gif.latex?\bar{C_m}"/> goes fast towards <img src="https://latex.codecogs.com/gif.latex?0"/> in timesteps independent of the number of variables <img src="https://latex.codecogs.com/gif.latex?N"/>
+![image](https://github.com/user-attachments/assets/abdcfe93-6cf9-4127-8598-08941cbfec08) 
+
+
