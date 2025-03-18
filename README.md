@@ -98,7 +98,7 @@ Initial values:
 
 Adapted using average satisfaction <img src="https://latex.codecogs.com/gif.latex?\bar{C}=\frac{1}{M}\sum_m{C_m}"/>:
 - <img src="https://latex.codecogs.com/gif.latex?\text{avg\_scale}=1+\max(0,\min(2.0,5.0\cdot(\bar{C}-0.1)))"/>
-- <img src="https://latex.codecogs.com/gif.latex?\text{step\_factor}=\min(1.0,\frac{\text{step\_count}}{500})"/>
+- <img src="https://latex.codecogs.com/gif.latex?\text{step\_factor}=\min(1.0,\frac{\text{step\_count}}{500})"/> (not needed ; equals 1, as the timesteps are much less than 500)
 
 Updates:
 - <img src="https://latex.codecogs.com/gif.latex?\alpha(t)=\alpha_0\cdot\text{avg\_scale}"/>
