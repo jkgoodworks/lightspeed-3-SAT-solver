@@ -156,3 +156,6 @@ also the average clause dissatisfaction <img src="https://latex.codecogs.com/gif
 typical output of running an instance of 23 million variables and at the critical ratio (4.256) on an H100 gpu 
 
 
+![Animation1](https://github.com/user-attachments/assets/8bd9137b-adf1-4b77-bdbf-0697f136d58a)
+83 million variables at the critical ratio (4.256) on an H100 gpu 
+
