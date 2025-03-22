@@ -15,7 +15,7 @@ The 3-SAT problem consists of:
 - **Clauses**: There are <img src="https://latex.codecogs.com/gif.latex?M"/> clauses, indexed as <img src="https://latex.codecogs.com/gif.latex?m=0,1,\dots,M-1"/>. Each clause is a disjunction (OR) of three literals, and all clauses must be satisfied simultaneously.
 
 For each clause <img src="https://latex.codecogs.com/gif.latex?m"/>, we define three literals by:
-- <img src="https://latex.codecogs.com/gif.latex?\text{var}_{m,i}\in\{0,1,\dots,N-1\}"/> (for <img src="https://latex.codecogs.com/gif.latex?i=0,1,2"/>), indices the variable.
+- <img src="https://latex.codecogs.com/gif.latex?\text{var}_{m,i}\in\{0,1,\dots,N-1\}"/> (for <img src="https://latex.codecogs.com/gif.latex?i=0,1,2"/>), indices the variable in clause <img src="https://latex.codecogs.com/gif.latex?m"/> literal <img src="https://latex.codecogs.com/gif.latex?i"/>.
 - <img src="https://latex.codecogs.com/gif.latex?q_{m,i}\in\{-1,1\}"/>, where 1 indicates the variable is positive and -1 indicates it is negated.
 
 The objective is to assign truth values to all <img src="https://latex.codecogs.com/gif.latex?N"/> variables such that all <img src="https://latex.codecogs.com/gif.latex?M"/> clauses are true.
@@ -63,11 +63,11 @@ The system evolves through these differential equations:
 
 3. **Variable Dynamics**  
    For each variable <img src="https://latex.codecogs.com/gif.latex?k"/>:  
-   <img src="https://latex.codecogs.com/gif.latex?\frac{dv_k}{dt}=\sum_{m=0}^{M-1}\sum_{i=0}^{2}\mathbb{I}[\text{var}_{m,i}=k]\left[x_{lm}^{(m)}x_{sm}^{(m)}G_{m,i}+(1+\zeta{x}_{lm}^{(m)})(1-x_{sm}^{(m)})R_{m,i}\right]"/>  
+   <img src="https://latex.codecogs.com/gif.latex?\frac{dv_k}{dt}=\sum_{\overset{m=0}{\textbf{clauses}}}^{M-1}\sum_{\overset{i=0}{\quad\textbf{literals}}}^{2}\mathbb{I}[\text{var}_{m,i}=k]\left[x_{lm}^{(m)}x_{sm}^{(m)}G_{m,i}+(1+\zeta{x}_{lm}^{(m)})(1-x_{sm}^{(m)})R_{m,i}\right]"/>  
    Where:  
    - <img src="https://latex.codecogs.com/gif.latex?\mathbb{I}[\text{var}_{m,i}=k]"/>: 1 if variable <img src="https://latex.codecogs.com/gif.latex?k"/> is at <img src="https://latex.codecogs.com/gif.latex?\text{var}_{m,i}"/>, 0 otherwise.  
    - Gradient: <img src="https://latex.codecogs.com/gif.latex?G_{m,i}=q_{m,i}C_m"/>.  
-   - Residual: <img src="https://latex.codecogs.com/gif.latex?R=\[\begin{cases}\frac{1}{2}(q_{m,i}-v_k)&\text{if}\quad{i}=i_m^*\\0&\text{otherwise}\end{cases}\]"/>.  
+   - Residual: <img src="https://latex.codecogs.com/gif.latex?R_{m,i}=\begin{cases}\frac{1}{2}(q_{m,i}-v_k)&\text{if}\quad{i}=i_m^*\\0&\text{otherwise}\end{cases}\quad=\begin{cases}q_{m,i}C_m&\text{if}\quad{i}=i_m^*\\0&\text{otherwise}\end{cases}=\begin{cases}G_{m,i}&\text{if}\quad{i}=i_m^*\\0&\text{otherwise}\end{cases}"/>.  
    - <img src="https://latex.codecogs.com/gif.latex?\zeta"/> (e.g., 0.1): weighting factor.
 
 ### Numerical Integration
@@ -129,11 +129,18 @@ it takes about 13-17 seconds on my computer that has an nvidia rtx geforce 3060 
 
 ##**Epilogue and Apologies**
 
-Concepts of 'adaptivity' greatly improved the algorithm, same as simple momentum term (I also tried nesterov momentum and adam like optimizations, but I think that didn't help), the <img src="https://latex.codecogs.com/gif.latex?\sin^3\left(C_m-\gamma\right)"/>  vs just <img src="https://latex.codecogs.com/gif.latex?C_m-\gamma"/> helped consistently solve in the fewest timesteps (ie. reduce deviations in solving time)
+The gradient term <img src="https://latex.codecogs.com/gif.latex?G"/> is different than in the paper, originally due to mistake but correcting it in the current code increases the solving time. Concepts of 'adaptivity' greatly improved the algorithm, same as simple momentum term (I also tried nesterov momentum and adam like optimizations, but I think that didn't help), the <img src="https://latex.codecogs.com/gif.latex?\sin^3\left(C_m-\gamma\right)"/>  vs just <img src="https://latex.codecogs.com/gif.latex?C_m-\gamma"/> helped consistently solve in the fewest timesteps (ie. reduce deviations in solving time).
 
-As of right now there are some issues with the code: 
-<img src="https://latex.codecogs.com/gif.latex?C_{max}\quad\text{and}\quad{C_{avg}}"/> computation seems broken yet it still somehow works (FIXED).
-The GPU isn't fully used and there are many other **ineffiencies** (algorithmic and programming wise ie. data transfers, unnecessary computation, precision etc.). Also better memory management is necessary;  as with together 40 million variables and 4.25*40 million clauses gpu gets overwhelmed and computers crashes (Note: an  H100 gpu (with plenty of RAM) can handle succesfully 350 million variables and 1,49 billion clauses (tried on a server) ). Also although the code is very effiecient up to even further than the critical ratio, for ratios more close to 5 it start getting inefficient (but that must be  algorithmically fixable).
+(typical long memory plot)
+![image](https://github.com/user-attachments/assets/b63e8f92-b3b4-4286-b8da-effa72362282)
+
+
+(typical short memory plot)
+![image](https://github.com/user-attachments/assets/6ce7ab5d-355f-48c9-943d-91a9abc041e1)
+
+
+
+The GPU maybe isn't fully used and there are many other **ineffiencies** (algorithmic and programming wise ie. data transfers, unnecessary computation, precision etc.). Also better memory management is necessary;  as with together 40 million variables and 4.25*40 million clauses gpu gets overwhelmed and computers crashes (Note: an  H100 gpu (with plenty of RAM) can handle succesfully 350 million variables and 1,49 billion clauses (tried on a server) ). Also although the code is very effiecient up to even further than the critical ratio, for ratios more close to 5 it start getting inefficient (but that must be  algorithmically fixable).
 
 The timesteps <img src="https://latex.codecogs.com/gif.latex?\Delta{t}"/>.
  seems to scale logarithmically with the number of variables <img src="https://latex.codecogs.com/gif.latex?N"/> . The actual time per <img src="https://latex.codecogs.com/gif.latex?\Delta{t}"/> is is linear (but fully parallelizable ie. doubling the gpu halves the time) function of <img src="https://latex.codecogs.com/gif.latex?N"/>. 
