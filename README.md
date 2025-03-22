@@ -151,11 +151,14 @@ The timesteps <img src="https://latex.codecogs.com/gif.latex?\Delta{t}"/>.
 also the average clause dissatisfaction <img src="https://latex.codecogs.com/gif.latex?\bar{C_m}"/> goes fast towards <img src="https://latex.codecogs.com/gif.latex?0"/> in timesteps independent of the number of variables <img src="https://latex.codecogs.com/gif.latex?N"/>
 ![image](https://github.com/user-attachments/assets/abdcfe93-6cf9-4127-8598-08941cbfec08) 
 
+Few experiments ,of instances picked at random, on an H100 gpu.
 
 ![image](https://github.com/user-attachments/assets/cea76b03-96dd-431f-9299-20dd64ac524e)
-typical output of running an instance of 23 million variables and at the critical ratio (4.256) on an H100 gpu 
-
+typical output of running an instance of 23 million variables and at the critical ratio (4.256) 
 
 ![Animation1](https://github.com/user-attachments/assets/8bd9137b-adf1-4b77-bdbf-0697f136d58a)
-83 million variables at the critical ratio (4.256) on an H100 gpu 
+83 million variables at the critical ratio (4.256)
+
+![image](https://github.com/user-attachments/assets/48dce0f1-6559-44db-936a-a060b5c66e18)
+330 million variables at the critical ratio (4.256)
 
