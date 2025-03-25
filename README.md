@@ -63,11 +63,10 @@ The system evolves through these differential equations:
 
 3. **Variable Dynamics**  
    For each variable <img src="https://latex.codecogs.com/gif.latex?k"/>:  
-   <img src="https://latex.codecogs.com/gif.latex?\frac{dv_k}{dt}=\sum_{\overset{m=0}{\textbf{clauses}}}^{M-1}\sum_{\overset{i=0}{\quad\textbf{literals}}}^{2}\mathbb{I}[\text{var}_{m,i}=k]\left[x_{lm}^{(m)}x_{sm}^{(m)}G_{m,i}+(1+\zeta{x}_{lm}^{(m)})(1-x_{sm}^{(m)})R_{m,i}\right]"/>  
+   <img src="https://latex.codecogs.com/gif.latex?\frac{dv_k}{dt}=\sum_{\overset{m=0}{\textbf{clauses}}}^{M-1}\sum_{\overset{i=0}{\quad\textbf{literals}}}^{2}\mathbb{I}[\text{var}_{m,i}=k]q_{m,i}C_m\left(\quad{}x_{lm}^{(m)}x_{sm}^{(m)}+\quad{}\mathbb{I}[i=i_m^*](1+\zeta{x}_{lm}^{(m)})(1-x_{sm}^{(m)})\quad{}\right)"/>  
    Where:  
-   - <img src="https://latex.codecogs.com/gif.latex?\mathbb{I}[\text{var}_{m,i}=k]"/>: 1 if variable <img src="https://latex.codecogs.com/gif.latex?k"/> is at <img src="https://latex.codecogs.com/gif.latex?\text{var}_{m,i}"/>, 0 otherwise.  
-   - Gradient: <img src="https://latex.codecogs.com/gif.latex?G_{m,i}=q_{m,i}C_m"/>.  
-   - Residual: <img src="https://latex.codecogs.com/gif.latex?R_{m,i}=\begin{cases}\frac{1}{2}(q_{m,i}-v_k)&\text{if}\quad{i}=i_m^*\\0&\text{otherwise}\end{cases}\quad=\begin{cases}q_{m,i}C_m&\text{if}\quad{i}=i_m^*\\0&\text{otherwise}\end{cases}=\begin{cases}G_{m,i}&\text{if}\quad{i}=i_m^*\\0&\text{otherwise}\end{cases}"/>.  
+   - <img src="https://latex.codecogs.com/gif.latex?\mathbb{I}[\text{var}_{m,i}=k]"/>: 1 if variable <img src="https://latex.codecogs.com/gif.latex?k"/> is at <img src="https://latex.codecogs.com/gif.latex?\text{var}_{m,i}"/>, 0 otherwise.
+   -  <img src="https://latex.codecogs.com/gif.latex?\mathbb{I}[i=i_m^*]"/>: 1 if <img src="https://latex.codecogs.com/gif.latex?i"/> is the literal that minimizes <img src="https://latex.codecogs.com/gif.latex?C_m"/>
    - <img src="https://latex.codecogs.com/gif.latex?\zeta"/> (e.g., 0.1): weighting factor.
 
 ### Numerical Integration
