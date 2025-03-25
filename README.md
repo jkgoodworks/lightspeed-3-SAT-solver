@@ -34,8 +34,8 @@ These variables evolve over time, with their updates parallelized on the GPU.
 For each clause <img src="https://latex.codecogs.com/gif.latex?m"/> and literal <img src="https://latex.codecogs.com/gif.latex?i"/>, the dissatisfaction is:
 <img src="https://latex.codecogs.com/gif.latex?t_{m,i}=1-q_{m,i}v_{\text{var}_{m,i}}"/>
 
-- If the literal is satisfied (e.g., <img src="https://latex.codecogs.com/gif.latex?q_{m,i}=1"/> and <img src="https://latex.codecogs.com/gif.latex?v_{\text{var}_{m,i}}>0"/>), then <img src="https://latex.codecogs.com/gif.latex?t_{m,i}\leq0"/>.
-- If unsatisfied, <img src="https://latex.codecogs.com/gif.latex?t_{m,i}>0"/>.
+- If the literal is 100% satisfied (e.g., <img src="https://latex.codecogs.com/gif.latex?q_{m,i}=1"/> and <img src="https://latex.codecogs.com/gif.latex?v_{\text{var}_{m,i}}\approx{1}"/>), then <img src="https://latex.codecogs.com/gif.latex?t_{m,i}\approx{0}"/>.
+- If 100% unsatisfied, (e.g., <img src="https://latex.codecogs.com/gif.latex?q_{m,i}=1"/> and <img src="https://latex.codecogs.com/gif.latex?v_{\text{var}_{m,i}}\approx{-1}"/>), then <img src="https://latex.codecogs.com/gif.latex?t_{m,i}\approx{2}"/>..
 
 The clause satisfaction measure is:
 <img src="https://latex.codecogs.com/gif.latex?C_m=\frac{1}{2}\min_{i=0,1,2}t_{m,i}"/>
