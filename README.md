@@ -63,7 +63,7 @@ The system evolves through these differential equations:
 
 3. **Variable Dynamics**  
    For each variable <img src="https://latex.codecogs.com/gif.latex?k"/>:  
-   <img src="https://latex.codecogs.com/gif.latex?\frac{dv_k}{dt}=\sum_{\overset{m=0}{\textbf{clauses}}}^{M-1}\sum_{\overset{i=0}{\quad\textbf{literals}}}^{2}\mathbb{I}[\text{var}_{m,i}=k]q_{m,i}C_m\left(\quad{}x_{lm}^{(m)}x_{sm}^{(m)}+\quad{}\mathbb{I}[i=i_m^*](1+\zeta{x}_{lm}^{(m)})(1-x_{sm}^{(m)})\quad{}\right)"/>  
+   <img src="https://latex.codecogs.com/gif.latex?\frac{dv_k}{dt}=\sum_{\overset{m=0}{\textbf{clauses}}}^{M-1}C_m\sum_{\overset{i=0}{\quad\textbf{literals}}}^{2}\mathbb{I}[\text{var}_{m,i}=k]q_{m,i}\left(\quad{}x_{lm}^{(m)}x_{sm}^{(m)}+\quad{}\mathbb{I}[i=i_m^*](1+\zeta{x}_{lm}^{(m)})(1-x_{sm}^{(m)})\quad{}\right)"/>  
    Where:  
    - <img src="https://latex.codecogs.com/gif.latex?\mathbb{I}[\text{var}_{m,i}=k]"/>: 1 if variable <img src="https://latex.codecogs.com/gif.latex?k"/> is at <img src="https://latex.codecogs.com/gif.latex?\text{var}_{m,i}"/>, 0 otherwise.
    -  <img src="https://latex.codecogs.com/gif.latex?\mathbb{I}[i=i_m^*]"/>: 1 if <img src="https://latex.codecogs.com/gif.latex?i"/> is the literal that minimizes <img src="https://latex.codecogs.com/gif.latex?C_m"/>
