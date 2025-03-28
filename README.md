@@ -1,5 +1,7 @@
 <img src="https://latex.codecogs.com/gif.latex?O({n\over{\text{gpu\thinspace{size}}}}\log{n})"/> 3-SAT solver.
 
+(Note: log factor is derived empirically)
+
 obtained by tweeking, a bit, the system presented in https://arxiv.org/abs/2011.06551 of MemComputing Inc.
 
 Related code: https://github.com/yuanhangzhang98/MemComputing_3SAT_demo 
