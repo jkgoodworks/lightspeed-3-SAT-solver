@@ -112,7 +112,7 @@ The solver runs until <img src="https://latex.codecogs.com/gif.latex?C_m<0.49"/>
 - <img src="https://latex.codecogs.com/gif.latex?v_k>0"/>: "true."
 - <img src="https://latex.codecogs.com/gif.latex?v_k\leq0"/>: "false."
 
-### **Results**
+### **Results** (for V1; V2 should perform even better at large instances)
 Here the instance is 10 million variables and 4.25*10 million clauses (4.25 ratio was chosen because it is the hardest to solve)<img src="https://latex.codecogs.com/gif.latex?v_k"/>
 
 I chose one variable at random
